@@ -1,0 +1,11 @@
+[target.arm-unknown-linux-gnueabihf]
+linker = "arm-nickel-linux-gnueabihf-gcc"
+
+# Build scripts that compile C (notably `ring`, pulled by `reqwest`'s
+# rustls-tls feature) default to looking for `arm-linux-gnueabihf-gcc`,
+# which NickelTC doesn't ship. Point cc-rs at the nickel-prefixed
+# binaries via env so transitive C deps cross-compile too.
+[env]
+CC_arm_unknown_linux_gnueabihf = "arm-nickel-linux-gnueabihf-gcc"
+CXX_arm_unknown_linux_gnueabihf = "arm-nickel-linux-gnueabihf-g++"
+AR_arm_unknown_linux_gnueabihf = "arm-nickel-linux-gnueabihf-ar"

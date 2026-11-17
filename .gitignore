@@ -1,0 +1,10 @@
+*.so*
+*.o
+*.moc
+*.rcc
+.env
+*.log
+cli/target
+KoboRoot.tgz
+files
+hook/res/*.png
