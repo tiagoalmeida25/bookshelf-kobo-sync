@@ -10,6 +10,11 @@ It is a fork of [NickelHardcover](https://codeberg.org/StrayRose/NickelHardcover
 by StrayRose, built on [NickelHook](https://github.com/pgaskin/NickelHook) by
 Patrick Gaskin. Both are MIT licensed, and so is this.
 
+This is an independent project. It is not affiliated with or endorsed by
+Rakuten Kobo, and Kobo does not support it. It changes software on your device,
+so you install it at your own risk, and a Kobo firmware update can stop it
+working.
+
 ## What it does
 
 After a reading session, once the Kobo is on Wi-Fi, the mod uploads:
@@ -55,6 +60,9 @@ of the Kobo drive and eject. The mod removes itself on the next boot.
 - `cli/` is a small Rust program the hook starts. It reads the Kobo's reading
   database and sends the changes to the Bookshelf backend over HTTPS.
 - `dist/` holds the packaged build that the setup guide links to.
+- `LICENSES.txt` holds the licence notices for the mod and the Rust libraries
+  built into the sync program. It ships inside the download. Regenerate it with
+  `python3 scripts/third_party_licenses.py` when `cli/Cargo.lock` changes.
 
 ## Build
 

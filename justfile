@@ -47,11 +47,14 @@ package: build
   cp cli/target/arm-unknown-linux-gnueabihf/release/bookshelf-kobo  KoboRoot/mnt/onboard/.adds/BookshelfSync/
   cp hook/res/config_example.ini                                    KoboRoot/mnt/onboard/.adds/BookshelfSync/config.ini.example
   tar -C KoboRoot -czf dist/KoboRoot.tgz .
-  # Ship a single zip the web setup guide can link to.
+  # Ship a single zip the web setup guide can link to. LICENSES.txt carries the
+  # notices the MIT and Apache licences ask for; regenerate it with
+  # scripts/third_party_licenses.py when cli/Cargo.lock changes.
   VERSION=$(git describe --tags --long --dirty 2>/dev/null || echo "dev")
   ( cd dist && \
     cp ../hook/res/config_example.ini config.ini.example && \
-    zip -q "bookshelf-kobo-sync-${VERSION}.zip" KoboRoot.tgz config.ini.example && \
+    cp ../LICENSES.txt LICENSES.txt && \
+    zip -q "bookshelf-kobo-sync-${VERSION}.zip" KoboRoot.tgz config.ini.example LICENSES.txt && \
     cp "bookshelf-kobo-sync-${VERSION}.zip" bookshelf-kobo-sync-latest.zip )
   rm -r KoboRoot
   echo "wrote dist/bookshelf-kobo-sync-latest.zip and dist/bookshelf-kobo-sync-${VERSION}.zip"
